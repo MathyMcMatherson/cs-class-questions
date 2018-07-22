@@ -20,5 +20,5 @@
 }
 
 #question-container > div {
-  background-color: "green";
+  font-weight: bold;
 }

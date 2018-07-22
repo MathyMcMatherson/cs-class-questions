@@ -1,0 +1,22 @@
+#top-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 100px auto;
+  grid-gap: 10px;
+  background-color: #2196F3;
+}
+
+#top-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+#question-container {
+  display: grid;
+  grid-template-columns: auto;
+  background-color: #2196F3;
+}
+
+#question-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+}

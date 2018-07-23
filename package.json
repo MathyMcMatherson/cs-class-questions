@@ -1,6 +1,6 @@
 {
   "name"         : "submit-question",
-  "version"      : "0.0.0",
+  "version"      : "1.0.0",
   "description"  : "Application that lets students submit questions for teacher to see",
   "main"         : "server.js",
   "author"       : "Dan Schneider",
@@ -10,5 +10,9 @@
     "morgan"     : "^1.2.2",
     "body-parser": "^1.5.2",
     "method-override": "^2.1.2"
-    }
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "6.9.2"
+  }
 }

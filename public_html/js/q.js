@@ -41,6 +41,19 @@ function reloadData(data) {
   for(let q of QUESTIONS) {
     let newQuestion = document.createElement("div");
     newQuestion.innerHTML = q.content
+
+    newQuestion.addEventListener('click', e => {
+      let id = q._id;
+      fetch(`/api/question/${id}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
+      }).then(res => {
+        if(res.ok) return res.json()
+      }).then(data => {
+        reloadData(data)
+      });
+    });
+
     questionDiv.appendChild(newQuestion);
   }
 }

@@ -114,4 +114,8 @@ app.get('*', function(req, res) {
 
 // listen (start app with node server.js) ======================================
 app.listen(process.env.PORT || 5000);
-console.log("Local branch! Listening on 8080");
+if(process.env.PORT) {
+  console.log("Heroku version - listening on " + process.env.PORT)
+} else {
+    console.log("Local branch! Listening on 5000");
+}

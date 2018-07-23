@@ -8,7 +8,18 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 
 // configuration =================
 
-mongoose.connect('mongodb://dschneider:SmellyS0ckMan@ds243491.mlab.com:43491/questions_test');     // connect to mongoDB database
+//mongoose.connect('mongodb://dschneider:SmellyS0ckMan@ds243491.mlab.com:43491/questions_test');     // connect to mongoDB database
+
+//Set up default mongoose connection
+var mongoDB = 'mongodb://dschneider:SmellyS0ckMan@ds243491.mlab.com:43491/questions_test';
+mongoose.connect(mongoDB);
+// Get Mongoose to use the global promise library
+mongoose.Promise = global.Promise;
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(express.static(__dirname + '/public_html'));                 // set the static files location /public/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
@@ -28,17 +39,13 @@ var Question = mongoose.model('questions', {
     // api ---------------------------------------------------------------------
     // get all todos
     app.get('/api/question', function(req, res) {
-        console.log("HERE1");
         // use mongoose to get all todos in the database
         Question.find(function(err, questions) {
-            console.log("HERE2");
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err) {
-                console.log("HERE3");
                   res.send(err)
             }
 
-            console.log("HERE4");
             res.json(questions); // return all todos in JSON format
         });
     });

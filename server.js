@@ -1,3 +1,9 @@
+/*
+NOTE: Most of this stuff was cribbed from here:
+https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular
+*/
+
+
 // set up ========================
 var express  = require('express');
 var app      = express();                               // create our app w/ express

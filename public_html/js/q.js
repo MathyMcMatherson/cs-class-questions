@@ -19,20 +19,30 @@ function addQuestion() {
   };
 
   fetch('/api/question', {
-    method: 'GET',
-    headers: {'Content-Type': 'application/json'} //,
-    //body: JSON.stringify({
-    //'content': userInput.value
-    //})
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+    'content': userInput.value
+    })
   }).then(res => {
     if(res.ok) return res.json()
   }).then(data => {
-    console.log(data);
+    reloadData(data)
   });
 
 
 
   userInput.value = "";
+}
+
+function reloadData(data) {
+  QUESTIONS = data;
+  questionDiv.innerHTML = "";
+  for(let q of QUESTIONS) {
+    let newQuestion = document.createElement("div");
+    newQuestion.innerHTML = q.content
+    questionDiv.appendChild(newQuestion);
+  }
 }
 
 function getStarted() {
@@ -53,16 +63,10 @@ function getStarted() {
   }).then(res => {
     if(res.ok) return res.json()
   }).then(data => {
-    console.log(data);
-    QUESTIONS = data;
-    for(let q of QUESTIONS) {
-      let newQuestion = document.createElement("div");
-      newQuestion.innerHTML = q.content
-      questionDiv.appendChild(newQuestion);
-    }
+    //console.log(data);
+    reloadData(data);
   });
 
 }
-
 
 getStarted();

@@ -55,8 +55,7 @@ var Question = mongoose.model('questions', {
 
         // create a todo, information comes from AJAX request from Angular
         Question.create({
-            content : req.body.content,
-            done : false
+            content : req.body.content
         }, function(err, question) {
             if (err)
                 res.send(err);

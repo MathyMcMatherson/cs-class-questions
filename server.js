@@ -1,6 +1,14 @@
 /*
 NOTE: Most of this stuff was cribbed from here:
 https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular
+
+Use of FETCH was from here:
+https://zellwk.com/blog/crud-express-and-mongodb-2/
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+A few notes on Mongoose & MongoDB were from here:
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
+
 */
 
 

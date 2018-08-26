@@ -82,4 +82,15 @@ function getStarted() {
 
 }
 
+
+
+
 getStarted();
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elem = document.querySelector('#modal1');
+  var instance = M.Modal.init(elem, {
+    'dismissible': false
+  });
+  instance.open();
+});

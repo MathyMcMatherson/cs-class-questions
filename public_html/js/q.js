@@ -83,6 +83,11 @@ function getStarted() {
     }
   });
 
+  closeModal.addEventListener("click", e => {
+    name = nameInput.value;
+    document.querySelector("#nameSpan").innerHTML = name;
+  });
+
   fetch('/api/question', {
     method: 'GET',
     headers: {'Content-Type': 'application/json'}

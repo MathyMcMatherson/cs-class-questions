@@ -1,8 +1,12 @@
 //Global Vars
 let userInput = document.querySelector("#question");
 let questionDiv = document.querySelector("#question-container");
+let nameInput = document.querySelector("#name");
+let closeModal = document.querySelector("#closeModelBtn");
 let QUESTIONS = [];
 
+
+let name;
 
 
 
@@ -68,6 +72,15 @@ function getStarted() {
          userInput.value = lastCommand;
      }
      */
+  });
+
+  nameInput.addEventListener("keyup", e => {
+    console.log(nameInput.value.length);
+    if(nameInput.value.length > 0) {
+      closeModal.classList.remove("disabled");
+    } else {
+      closeModal.classList.add("disabled");
+    }
   });
 
   fetch('/api/question', {

@@ -44,7 +44,8 @@ app.use(methodOverride());
 
 // define model =================
 var Question = mongoose.model('questions', {
-    content : String
+    content : String,
+    name: String
 });
 
 
@@ -69,7 +70,8 @@ var Question = mongoose.model('questions', {
 
         // create a todo, information comes from AJAX request from Angular
         Question.create({
-            content : req.body.content
+            content : req.body.content,
+            name: req.body.name
         }, function(err, question) {
             if (err)
                 res.send(err);

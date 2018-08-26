@@ -7,7 +7,7 @@ let QUESTIONS = [];
 
 
 let name;
-
+let instance;
 
 
 
@@ -26,7 +26,8 @@ function addQuestion() {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-    'content': userInput.value
+    'content': userInput.value,
+    'name': name
     })
   }).then(res => {
     if(res.ok) return res.json()
@@ -44,7 +45,7 @@ function reloadData(data) {
   questionDiv.innerHTML = "";
   for(let q of QUESTIONS) {
     let newQuestion = document.createElement("div");
-    newQuestion.innerHTML = q.content
+    newQuestion.innerHTML = `${q.name}: ${q.content}`;
 
     newQuestion.addEventListener('click', e => {
       let id = q._id;
@@ -75,17 +76,20 @@ function getStarted() {
   });
 
   nameInput.addEventListener("keyup", e => {
-    console.log(nameInput.value.length);
+    //console.log(nameInput.value.length);
     if(nameInput.value.length > 0) {
       closeModal.classList.remove("disabled");
     } else {
       closeModal.classList.add("disabled");
     }
+    if(e.key == "Enter") {
+      instance.close();
+      acceptName();
+    }
   });
 
   closeModal.addEventListener("click", e => {
-    name = nameInput.value;
-    document.querySelector("#nameSpan").innerHTML = name;
+    acceptName();
   });
 
   fetch('/api/question', {
@@ -100,6 +104,10 @@ function getStarted() {
 
 }
 
+function acceptName() {
+  name = nameInput.value;
+  document.querySelector("#nameSpan").innerHTML = name;
+}
 
 
 
@@ -107,7 +115,7 @@ getStarted();
 
 document.addEventListener('DOMContentLoaded', function() {
   var elem = document.querySelector('#modal1');
-  var instance = M.Modal.init(elem, {
+  instance = M.Modal.init(elem, {
     'dismissible': false
   });
   instance.open();
